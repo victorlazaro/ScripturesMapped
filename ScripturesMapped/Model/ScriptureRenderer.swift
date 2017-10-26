@@ -62,80 +62,101 @@ class ScriptureRenderer {
     // MARK: - Helpers
 
     func htmlForBookId(_ bookId: Int, chapter: Int) -> String {
-        let book = GeoDatabase.sharedGeoDatabase.bookForId(bookId)
-        var title = ""
-        var heading1 = ""
-        var heading2 = ""
-
-        title = titleForBook(book, chapter)
-
-        heading1 = book.webTitle
-
-        if !isSupplementary(book) {
-            heading2 = book.heading2
-
-            if heading2 != "" {
-                heading2 = "\(heading2)\(chapter)"
+        var book: Book
+        do {
+            book = try GeoDatabase.sharedGeoDatabase.bookForId(bookId)
+            var title = ""
+            var heading1 = ""
+            var heading2 = ""
+            
+            title = titleForBook(book, chapter)
+            
+            heading1 = book.webTitle
+            
+            if !isSupplementary(book) {
+                heading2 = book.heading2
+                
+                if heading2 != "" {
+                    heading2 = "\(heading2)\(chapter)"
+                }
             }
-        }
-
-        let stylePath = Bundle.main.path(forResource: "scripture", ofType: "css")!
-        let scriptureStyle = try? NSString(contentsOfFile: stylePath, encoding: String.Encoding.utf8.rawValue)
-
-        var page = "<!doctype html>\n<html><head><title>\(title)</title>\n"
-
-        if let style = scriptureStyle {
-            page += "<style type=\"text/css\">\n\(style)\n</style>\n"
+            
+            let stylePath = Bundle.main.path(forResource: "scripture", ofType: "css")!
+            let scriptureStyle = try? NSString(contentsOfFile: stylePath, encoding: String.Encoding.utf8.rawValue)
+            
+            var page = "<!doctype html>\n<html><head><title>\(title)</title>\n"
+            
+            if let style = scriptureStyle {
+                page += "<style type=\"text/css\">\n\(style)\n</style>\n"
+            }
+            
+            page += "</head>\n<body>"
+            page += "<div class=\"heading1\">\(heading1)</div>"
+            page += "<div class=\"heading2\">\(heading2)</div>"
+            page += "<div class=\"chapter\">"
+            
+            
+            collectedGeocodedPlaces = [GeoPlace]()
+            
+            let verses = try GeoDatabase.sharedGeoDatabase.versesForScriptureBookId(bookId, chapter)
+            for scripture in verses {
+                var verseClass = "verse"
+                
+                if scripture.flag == "H" {
+                    verseClass = "headVerse"
+                }
+                
+                page += "<a name=\"\(scripture.verse)\"><div class=\"\(verseClass)\">"
+                
+                if scripture.verse > 1 && scripture.verse < Constant.footnoteVerse {
+                    page += "<span class=\"verseNumber\">\(scripture.verse)</span>"
+                }
+                
+                page += geocodedTextForVerseText(scripture.text, scripture.id)
+                page += "</div>"
+            }
+            
+            let scriptPath = Bundle.main.path(forResource: "geocode", ofType: "js")!
+            let script = try! NSString(contentsOfFile: scriptPath, encoding: String.Encoding.utf8.rawValue)
+            
+            page += "</div></body><script type=\"text/javascript\">\(script)</script></html>"
+            
+            return page.convertToHtmlEntities()
+            
+            
+        } catch  {
+            print(error)
         }
         
-        page += "</head>\n<body>"
-        page += "<div class=\"heading1\">\(heading1)</div>"
-        page += "<div class=\"heading2\">\(heading2)</div>"
-        page += "<div class=\"chapter\">"
 
-        collectedGeocodedPlaces = [GeoPlace]()
+        return ""
 
-        for scripture in GeoDatabase.sharedGeoDatabase.versesForScriptureBookId(bookId, chapter) {
-            var verseClass = "verse"
-
-            if scripture.flag == "H" {
-                verseClass = "headVerse"
-            }
-
-            page += "<a name=\"\(scripture.verse)\"><div class=\"\(verseClass)\">"
-
-            if scripture.verse > 1 && scripture.verse < Constant.footnoteVerse {
-                page += "<span class=\"verseNumber\">\(scripture.verse)</span>"
-            }
-
-            page += geocodedTextForVerseText(scripture.text, scripture.id)
-            page += "</div>"
-        }
-
-        let scriptPath = Bundle.main.path(forResource: "geocode", ofType: "js")!
-        let script = try! NSString(contentsOfFile: scriptPath, encoding: String.Encoding.utf8.rawValue)
         
-        page += "</div></body><script type=\"text/javascript\">\(script)</script></html>"
-
-        return page.convertToHtmlEntities()
+        
     }
 
     func geocodedTextForVerseText(_ verseText: String, _ scriptureId: Int) -> String {
-        var verseText = verseText
-        for (geoplace, geotag) in GeoDatabase.sharedGeoDatabase.geoTagsForScriptureId(scriptureId) {
-            let startIndex = verseText.characters.index(verseText.startIndex, offsetBy: geotag.startOffset)
-            let endIndex = verseText.characters.index(startIndex, offsetBy: geotag.endOffset - geotag.startOffset)
-
-            collectedGeocodedPlaces.append(geoplace)
-
-            // Insert hyperlink for geotag in this verse at the given offsets
-            verseText = verseText.substring(to: startIndex) +
-                "<a href=\"\(Constant.baseUrl)\(geoplace.id)\">" +
-                        verseText.substring(with: (startIndex ..< endIndex)) +
-                        "</a>" + verseText.substring(from: endIndex)
+        do {
+            var verseText = verseText
+            let geotags = try GeoDatabase.sharedGeoDatabase.geoTagsForScriptureId(scriptureId)
+            for (geoplace, geotag) in geotags {
+                let startIndex = verseText.characters.index(verseText.startIndex, offsetBy: geotag.startOffset)
+                let endIndex = verseText.characters.index(startIndex, offsetBy: geotag.endOffset - geotag.startOffset)
+                
+                collectedGeocodedPlaces.append(geoplace)
+                
+                // Insert hyperlink for geotag in this verse at the given offsets
+                verseText = String(verseText[..<startIndex]) +
+                    "<a href=\"\(Constant.baseUrl)\(geoplace.id)\">" +
+                    String(verseText[startIndex ..< endIndex]) +
+                    "</a>" + String(verseText[..<endIndex])
+            }
+            
+            return verseText
+        } catch {
+            
         }
-
-        return verseText
+        return ""
     }
 
     func isSupplementary(_ book: Book) -> Bool {

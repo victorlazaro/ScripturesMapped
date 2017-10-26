@@ -26,8 +26,8 @@ struct GeoCategory : TableMapping, RowConvertible {
     static let category = "Category"
     
     init(row: Row) {
-        id = row.value(named: GeoCategory.id)
-        category = Category(rawValue: row.value(named: GeoCategory.category))!
+        id = row[GeoCategory.id]
+        category = Category(rawValue: row[GeoCategory.category])!
     }
 }
 
@@ -71,25 +71,25 @@ struct GeoPlace : TableMapping, RowConvertible {
     static let category = "Category"
     
     init(row: Row) {
-        id = row.value(named: GeoPlace.id)
-        placename = row.value(named: GeoPlace.placename)
-        latitude = row.value(named: GeoPlace.latitude)
-        longitude = row.value(named: GeoPlace.longitude)
-        category = GeoCategory.Category(rawValue: row.value(named: GeoPlace.category))
+        id = row[GeoPlace.id]
+        placename = row[GeoPlace.placename]
+        latitude = row[GeoPlace.latitude]
+        longitude = row[GeoPlace.longitude]
+        category = GeoCategory.Category(rawValue: row[GeoPlace.category])
         
-        if let geoFlag = row.value(named: GeoPlace.flag) as? String {
+        if let geoFlag = row[GeoPlace.flag] as? String {
             flag = GeoFlag(rawValue: geoFlag)!
         } else {
             flag = GeoFlag.None
         }
         
-        if let vLatitude = row.value(named: GeoPlace.viewLatitude) as? Double {
+        if let vLatitude = row[GeoPlace.viewLatitude] as? Double {
             viewLatitude = vLatitude
-            viewLongitude = row.value(named: GeoPlace.viewLongitude)
-            viewTilt = row.value(named: GeoPlace.viewTilt)
-            viewRoll = row.value(named: GeoPlace.viewRoll)
-            viewAltitude = row.value(named: GeoPlace.viewAltitude)
-            viewHeading = row.value(named: GeoPlace.viewHeading)
+            viewLongitude = row[GeoPlace.viewLongitude]
+            viewTilt = row[GeoPlace.viewTilt]
+            viewRoll = row[GeoPlace.viewRoll]
+            viewAltitude = row[GeoPlace.viewAltitude]
+            viewHeading = row[GeoPlace.viewHeading]
         }
     }
 }
@@ -108,9 +108,9 @@ struct GeoTag : TableMapping, RowConvertible {
     static let endOffset = "EndOffset"
     
     init(row: Row) {
-        geoplaceId = row.value(named: GeoTag.geoplaceId)
-        scriptureId = row.value(named: GeoTag.scriptureId)
-        startOffset = row.value(named: GeoTag.startOffset)
-        endOffset = row.value(named: GeoTag.endOffset)
+        geoplaceId = row[GeoTag.geoplaceId]
+        scriptureId = row[GeoTag.scriptureId]
+        startOffset = row[GeoTag.startOffset]
+        endOffset = row[GeoTag.endOffset]
     }
 }

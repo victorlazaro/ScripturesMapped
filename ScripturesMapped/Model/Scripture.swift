@@ -27,11 +27,11 @@ struct Scripture : TableMapping, RowConvertible {
     static let text = "Text"
     
     init(row: Row) {
-        id = row.value(named: Scripture.id)
-        bookId = row.value(named: Scripture.bookId)
-        chapter = row.value(named: Scripture.chapter)
-        verse = row.value(named: Scripture.verse)
-        flag = row.value(named: Scripture.flag)
-        text = String(data: row.value(named: Scripture.text), encoding: .utf8)!
+        id = row[Scripture.id]
+        bookId = row[Scripture.bookId]
+        chapter = row[Scripture.chapter]
+        verse = row[Scripture.verse]
+        flag = row[Scripture.flag]
+        text = String(data: row[Scripture.text], encoding: .utf8)!
     }
 }

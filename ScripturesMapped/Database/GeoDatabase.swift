@@ -39,9 +39,9 @@ class GeoDatabase {
     //
     // Return a Book object for the given book ID.
     //
-    func bookForId(_ bookId: Int) -> Book {
-        return dbQueue.inDatabase { (db: Database) -> Book in
-            if let row = Row.fetchOne(db,
+    func bookForId(_ bookId: Int) throws -> Book {
+        return try dbQueue.inDatabase { (db: Database) -> Book in
+            if let row = try Row.fetchOne(db,
                                       "select * from \(Book.databaseTableName) " +
                                       "where \(Book.id) = ?",
                                       arguments: [ bookId ]) {
@@ -50,16 +50,17 @@ class GeoDatabase {
 
             return Book()
         }
+        
     }
 
     //
     // Return array of Book objects for the given volume ID (i.e. parent book ID).
     //
-    func booksForParentId(_ parentBookId: Int) -> [Book] {
-        return dbQueue.inDatabase { (db: Database) -> [Book] in
+    func booksForParentId(_ parentBookId: Int) throws -> [Book] {
+        return try dbQueue.inDatabase { (db: Database) -> [Book] in
             var books = [Book]()
             
-            for row in Row.fetchAll(db,
+            for row in try Row.fetchAll(db,
                                     "select * from \(Book.databaseTableName) " +
                                     "where \(Book.parentBookId) = ? order by \(Book.id)",
                                     arguments: [ parentBookId ]) {
@@ -73,9 +74,9 @@ class GeoDatabase {
     //
     // Return the GeoPlace corresponding to the given ID.
     //
-    func geoPlaceForId(_ geoplaceId: Int) -> GeoPlace? {
-        return dbQueue.inDatabase { (db: Database) -> GeoPlace? in
-            if let row = Row.fetchOne(db,
+    func geoPlaceForId(_ geoplaceId: Int) throws -> GeoPlace? {
+        return try dbQueue.inDatabase { (db: Database) -> GeoPlace? in
+            if let row = try Row.fetchOne(db,
                                       "select * from \(GeoPlace.databaseTableName) " +
                                       "where \(GeoPlace.id) = ?", arguments: [ geoplaceId ]) {
                 return GeoPlace(row: row)
@@ -89,11 +90,11 @@ class GeoDatabase {
     // Return a query that will generate the join of geotags and geoplaces for
     // a given scripture ID.
     //
-    func geoTagsForScriptureId(_ scriptureId: Int) -> [(GeoPlace, GeoTag)] {
-        return dbQueue.inDatabase { (db: Database) -> [(GeoPlace, GeoTag)] in
+    func geoTagsForScriptureId(_ scriptureId: Int) throws -> [(GeoPlace, GeoTag)] {
+        return try dbQueue.inDatabase { (db: Database) -> [(GeoPlace, GeoTag)] in
             var geotags = [(GeoPlace, GeoTag)]()
             
-            for row in Row.fetchAll(db,
+            for row in try Row.fetchAll(db,
                                     "select * from \(GeoTag.databaseTableName) " +
                                     "join \(GeoPlace.databaseTableName) " +
                                     "where \(GeoTag.geoplaceId) = \(GeoPlace.id) " +
@@ -110,11 +111,11 @@ class GeoDatabase {
     //
     // Return a query that will generate all verses for a given book ID and chapter.
     //
-    func versesForScriptureBookId(_ bookId: Int, _ chapter: Int) -> [Scripture] {
-        return dbQueue.inDatabase { (db: Database) -> [Scripture] in
+    func versesForScriptureBookId(_ bookId: Int, _ chapter: Int) throws -> [Scripture] {
+        return try dbQueue.inDatabase { (db: Database) -> [Scripture] in
             var verses = [Scripture]()
 
-            for row in Row.fetchAll(db,
+            for row in try Row.fetchAll(db,
                                     "select * from \(Scripture.databaseTableName) " +
                                     "where \(Scripture.bookId) = ? and \(Scripture.chapter) = ? " +
                                     "order by \(Scripture.verse)",

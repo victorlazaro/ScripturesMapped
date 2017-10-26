@@ -63,18 +63,18 @@ struct Book : TableMapping, RowConvertible {
     }
     
     init(row: Row) {
-        id = row.value(named: Book.id)
-        abbr = row.value(named: Book.abbr)
-        citeAbbr = row.value(named: Book.citeAbbr)
-        citeFull = row.value(named: Book.citeFull)
-        fullName = row.value(named: Book.fullName)
-        numChapters = row.value(named: Book.numChapters)
-        parentBookId = row.value(named: Book.parentBookId)
-        webTitle = row.value(named: Book.webTitle)
-        tocName = row.value(named: Book.tocName)
-        subdiv = row.value(named: Book.subdiv)
-        backName = row.value(named: Book.backName)
-        gridName = row.value(named: Book.gridName)
-        heading2 = row.value(named: Book.heading2)
+        id = row[Book.id]
+        abbr = row[Book.abbr]
+        citeAbbr = row[Book.citeAbbr]
+        citeFull = row[Book.citeFull]
+        fullName = row[Book.fullName]
+        numChapters = row[Book.numChapters]
+        parentBookId = row[Book.parentBookId]
+        webTitle = row[Book.webTitle]
+        tocName = row[Book.tocName]
+        subdiv = row[Book.subdiv]
+        backName = row[Book.backName]
+        gridName = row[Book.gridName]
+        heading2 = row[Book.heading2]
     }
 }
