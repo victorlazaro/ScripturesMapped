@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="256.80000000000001" y="579.76011994002999"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Scriptures-->
         <scene sceneID="l71-Kk-f2X">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="RvN-VV-9TN" customClass="ScriptureTableViewController" customModule="ScripturesMapped" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,11 +47,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScriptureCellIdentifier" id="MFg-Ha-hiM" customClass="ScriptureTableViewCell" customModule="ScripturesMapped" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="VolumeCellIdentifier" id="MFg-Ha-hiM" customClass="ScriptureTableViewCell" customModule="ScripturesMapped" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MFg-Ha-hiM" id="XW2-Tc-jEo">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6h-Zp-vhh">
@@ -79,11 +79,64 @@
                             <outlet property="delegate" destination="RvN-VV-9TN" id="amR-Bg-VG9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="q3K-vh-zJu"/>
+                    <navigationItem key="navigationItem" title="Scriptures" id="q3K-vh-zJu"/>
+                    <connections>
+                        <segue destination="MEA-ip-Azy" kind="show" identifier="ToBookSegue" id="doe-Mj-gu6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYC-3l-KUX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1208" y="-85"/>
+        </scene>
+        <!--Books-->
+        <scene sceneID="OCC-d9-Ezr">
+            <objects>
+                <tableViewController title="Books" id="MEA-ip-Azy" customClass="BookTableViewController" customModule="ScripturesMapped" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fs5-D9-UeR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BookCellIdentifier" id="36q-hD-nNe" customClass="BookTableViewCell" customModule="ScripturesMapped" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="36q-hD-nNe" id="jzI-fF-K3K">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEY-c3-ava">
+                                            <rect key="frame" x="8" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KEY-c3-ava" firstAttribute="leading" secondItem="jzI-fF-K3K" secondAttribute="leading" constant="8" id="FNU-12-QdU"/>
+                                        <constraint firstItem="KEY-c3-ava" firstAttribute="top" secondItem="jzI-fF-K3K" secondAttribute="top" constant="11" id="dvL-aZ-SGk"/>
+                                        <constraint firstAttribute="bottom" secondItem="KEY-c3-ava" secondAttribute="bottom" constant="11.5" id="jaN-Ze-MJs"/>
+                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="KEY-c3-ava" secondAttribute="trailing" constant="325" id="nMk-YD-DaS"/>
+                                        <constraint firstItem="KEY-c3-ava" firstAttribute="centerY" secondItem="jzI-fF-K3K" secondAttribute="centerY" id="sck-YS-SNC"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bookLabel" destination="KEY-c3-ava" id="TRx-hz-3l3"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MEA-ip-Azy" id="NPp-v3-KnU"/>
+                            <outlet property="delegate" destination="MEA-ip-Azy" id="HeB-cW-1fL"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="TTr-bD-Yhg" kind="show" identifier="ToChapterSegue" id="O4F-pD-Y0b"/>
+                        <segue destination="CF4-SJ-dBi" kind="show" identifier="ToVersesSegue" id="Xrs-qc-3LC"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0l0-4n-5up" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2047" y="-85"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eMc-lW-4ef">
@@ -114,5 +167,89 @@
             </objects>
             <point key="canvasLocation" x="-697" y="249"/>
         </scene>
+        <!--Chapters-->
+        <scene sceneID="SjW-Sa-qIj">
+            <objects>
+                <tableViewController title="Chapters" id="TTr-bD-Yhg" customClass="ChapterTableViewController" customModule="ScripturesMapped" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="l9r-4l-ySy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChapterCelldentifier" id="a0g-xG-Lpe" customClass="ChapterTableViewCell" customModule="ScripturesMapped" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a0g-xG-Lpe" id="aUp-Op-Pyp">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdL-cP-QAr" userLabel="Chapter Label">
+                                            <rect key="frame" x="8" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="rdL-cP-QAr" secondAttribute="trailing" constant="325" id="6y3-cA-drI"/>
+                                        <constraint firstItem="rdL-cP-QAr" firstAttribute="top" secondItem="aUp-Op-Pyp" secondAttribute="top" constant="11" id="Uls-fE-U7r"/>
+                                        <constraint firstItem="rdL-cP-QAr" firstAttribute="leading" secondItem="aUp-Op-Pyp" secondAttribute="leading" constant="8" id="fKc-fI-6Tv"/>
+                                        <constraint firstItem="rdL-cP-QAr" firstAttribute="centerY" secondItem="aUp-Op-Pyp" secondAttribute="centerY" id="tvd-RH-QKE"/>
+                                        <constraint firstAttribute="bottom" secondItem="rdL-cP-QAr" secondAttribute="bottom" constant="11.5" id="yQg-hg-ZKd"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="chapterLabel" destination="rdL-cP-QAr" id="ssB-LG-WIp"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TTr-bD-Yhg" id="RWT-PC-6KQ"/>
+                            <outlet property="delegate" destination="TTr-bD-Yhg" id="b8L-OL-vhH"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="CF4-SJ-dBi" kind="show" identifier="ToVersesSegue" id="hue-Aj-Gqm"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5su-1H-KeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2876" y="-85"/>
+        </scene>
+        <!--Verses View Controller-->
+        <scene sceneID="hpm-WN-fP7">
+            <objects>
+                <viewController id="CF4-SJ-dBi" customClass="VersesViewController" customModule="ScripturesMapped" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gCQ-Ie-PAP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B2D-82-rVX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="B2D-82-rVX" firstAttribute="top" secondItem="HnE-yP-9S6" secondAttribute="top" id="NKM-sO-8Xn"/>
+                            <constraint firstItem="HnE-yP-9S6" firstAttribute="bottom" secondItem="B2D-82-rVX" secondAttribute="bottom" id="OkM-nL-cu8"/>
+                            <constraint firstItem="B2D-82-rVX" firstAttribute="leading" secondItem="HnE-yP-9S6" secondAttribute="leading" id="cKs-04-riK"/>
+                            <constraint firstItem="HnE-yP-9S6" firstAttribute="trailing" secondItem="B2D-82-rVX" secondAttribute="trailing" id="eky-Dc-neW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HnE-yP-9S6"/>
+                    </view>
+                    <connections>
+                        <outlet property="textOutlet" destination="B2D-82-rVX" id="xpM-Kc-icu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rox-OT-Hwp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3652" y="-85"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hue-Aj-Gqm"/>
+    </inferredMetricsTieBreakers>
 </document>

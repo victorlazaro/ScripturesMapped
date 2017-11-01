@@ -85,7 +85,7 @@ class ScriptureRenderer {
             page += "<a name=\"\(scripture.verse)\"><div class=\"\(verseClass)\">"
 
             if scripture.verse > 1 && scripture.verse < Constant.footnoteVerse {
-                page += "<span class=\"verseNumber\">\(scripture.verse)</span>"
+                page += "<span class=\"verseNumber\">\(scripture.verse) </span>"
             }
 
             page += geocodedTextForVerseText(scripture.text, scripture.id)

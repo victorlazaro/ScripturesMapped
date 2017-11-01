@@ -1,5 +1,5 @@
 //
-//  ScriptureTableViewCell.swift
+//  BookTableViewCell.swift
 //  ScripturesMapped
 //
 //  Created by Victor Lazaro on 10/30/17.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ScriptureTableViewCell: UITableViewCell {
+class BookTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var scriptureLabel: UILabel!
-    
+    @IBOutlet weak var bookLabel: UILabel!
+
 }

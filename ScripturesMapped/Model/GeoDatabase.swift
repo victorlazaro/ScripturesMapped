@@ -160,19 +160,20 @@ class GeoDatabase {
     }
 
     //
-    // Return an array of strings listing the titles of all scripture volumes.
+    // Return an array of books listing all scripture volumes.
     //
-    func volumes() -> [String] {
+    func volumes() -> [Book] {
 
         do {
-            let volumes = try dbQueue.inDatabase { (db: Database) -> [String] in
+            let volumes = try dbQueue.inDatabase { (db: Database) -> [Book] in
                 
-                var volumes = [String]()
+                
+                var volumes = [Book]()
                 
                 for row in try Row.fetchAll(db, "select * from \(Book.databaseTableName) " +
                                                 "where \(Book.parentBookId) is null or " +
                                                 "\(Book.parentBookId) == ''") {
-                    volumes.append(Book(row: row).fullName)
+                    volumes.append(Book(row: row))
                 }
                 
                 return volumes

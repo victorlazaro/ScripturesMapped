@@ -14,7 +14,8 @@ class ScriptureTableViewController: UITableViewController {
     
     // MARK: -  Storyboard
     struct Storyboard {
-        static let scriptureCellIdentifier = "ScriptureCellIdentifier"
+        static let scriptureCellIdentifier = "VolumeCellIdentifier"
+        static let toBookSegue = "ToBookSegue"
     }
     
     // MARK: - Database
@@ -22,13 +23,12 @@ class ScriptureTableViewController: UITableViewController {
     
     
     // MARK: - Data
-    private var dataToDisplay: [String] = []
+    private var volumes: [Book] = []
+    private var selectedIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        dataToDisplay = database.volumes()
+        volumes = database.volumes()
         
     }
 
@@ -37,7 +37,7 @@ class ScriptureTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dataToDisplay.count
+        return volumes.count
     }
 
     
@@ -45,21 +45,27 @@ class ScriptureTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.scriptureCellIdentifier, for: indexPath)
 
         if let scriptureCell = cell as? ScriptureTableViewCell {
-            scriptureCell.scriptureLabel.text = dataToDisplay[indexPath.row]
+            scriptureCell.scriptureLabel.text = volumes[indexPath.row].fullName
         }
 
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
+        performSegue(withIdentifier: Storyboard.toBookSegue, sender: self)
+        
+    }
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+        if let viewController = segue.destination as? BookTableViewController {
+            viewController.volume = volumes[selectedIndex!]
+        }
     }
-    */
+ 
 
 }
