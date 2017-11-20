@@ -10,28 +10,20 @@ import UIKit
 
 class ChapterTableViewController: UITableViewController {
 
-    
-    var book: Book?
+    // MARK: - Members
+    var book: Book!
     var chapters: [Int] = []
-    var selectedIndex = 0
     
     struct Storyboard {
         static let chapterCellIdentifier = "ChapterCelldentifier"
         static let toVersesSegue = "ToVersesSegue"
     }
+    
+    // MARK: - View Controller lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let scriptureBook = book else {
-            return
-        }
-        
-        //TODO handle title page, things that don't have chapters/sections.
-        chapters = Array(0...scriptureBook.numChapters! - 1)
-        
-        self.navigationItem.title = scriptureBook.fullName
-        
-        
+        chapters = Array(0...book.numChapters! - 1)
     }
 
     // MARK: - Table view data source
@@ -54,7 +46,6 @@ class ChapterTableViewController: UITableViewController {
  
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndex = indexPath.row
         performSegue(withIdentifier: Storyboard.toVersesSegue, sender: self)
     }
     
@@ -63,8 +54,10 @@ class ChapterTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.toVersesSegue {
             if let versesViewController = segue.destination as? VersesViewController {
-                versesViewController.bookId = book?.id
-                versesViewController.chapterId = selectedIndex + 1
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    versesViewController.bookId = book?.id
+                    versesViewController.chapterId = indexPath.row + 1
+                }
             }
         }
     }

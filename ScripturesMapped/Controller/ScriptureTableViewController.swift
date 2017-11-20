@@ -11,24 +11,19 @@ import UIKit
 class ScriptureTableViewController: UITableViewController {
 
     
-    
     // MARK: -  Storyboard
     struct Storyboard {
         static let scriptureCellIdentifier = "VolumeCellIdentifier"
         static let toBookSegue = "ToBookSegue"
     }
     
-    // MARK: - Database
-    private let database = GeoDatabase.sharedGeoDatabase
-    
-    
     // MARK: - Data
-    private var volumes: [Book] = []
-    private var selectedIndex: Int?
+    private var volumes = GeoDatabase.sharedGeoDatabase.volumes()
     
+    // MARK: - View Controller lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        volumes = database.volumes()
         
     }
 
@@ -36,7 +31,6 @@ class ScriptureTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return volumes.count
     }
 
@@ -52,7 +46,6 @@ class ScriptureTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndex = indexPath.row
         performSegue(withIdentifier: Storyboard.toBookSegue, sender: self)
         
     }
@@ -61,9 +54,13 @@ class ScriptureTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if let viewController = segue.destination as? BookTableViewController {
-            viewController.volume = volumes[selectedIndex!]
+        if segue.identifier == Storyboard.toBookSegue {
+            if let viewController = segue.destination as? BookTableViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    viewController.title = volumes[indexPath.row].fullName
+                    viewController.books = GeoDatabase.sharedGeoDatabase.booksForParentId(indexPath.row + 1)
+                }
+            }
         }
     }
  

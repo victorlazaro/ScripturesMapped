@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C3A9870DA381448732AC33E0 /* Pods_ScripturesMapped.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245AD3F410E8C63BE7F6ED10 /* Pods_ScripturesMapped.framework */; };
+		CF10288D1FA925D5001ADF1A /* geocode.js in Resources */ = {isa = PBXBuildFile; fileRef = CF10288C1FA925D4001ADF1A /* geocode.js */; };
 		CF1815D11FA76D9300C05180 /* ScriptureRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1815CF1FA76D9300C05180 /* ScriptureRenderer.swift */; };
 		CF1815D21FA76D9300C05180 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1815D01FA76D9300C05180 /* String+Extensions.swift */; };
 		CF1815D61FA76DE500C05180 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1815D31FA76DE500C05180 /* Book.swift */; };
@@ -23,12 +24,18 @@
 		CF9140A31FA19030006B4FA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF9140A21FA19030006B4FA8 /* Assets.xcassets */; };
 		CF9140A61FA19030006B4FA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF9140A41FA19030006B4FA8 /* LaunchScreen.storyboard */; };
 		CFDC3DB11FA191C500E59EBC /* ScriptureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDC3DB01FA191C500E59EBC /* ScriptureTableViewController.swift */; };
+		CFE440971FA7D2B700370753 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE440961FA7D2B700370753 /* BookTableViewController.swift */; };
+		CFE440991FA7D8D700370753 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE440981FA7D8D700370753 /* BookTableViewCell.swift */; };
+		CFE4409B1FA7DA3E00370753 /* ChapterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE4409A1FA7DA3E00370753 /* ChapterTableViewController.swift */; };
+		CFE4409D1FA7DA4F00370753 /* ChapterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE4409C1FA7DA4F00370753 /* ChapterTableViewCell.swift */; };
+		CFE4409F1FA7F2C800370753 /* VersesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE4409E1FA7F2C800370753 /* VersesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		245AD3F410E8C63BE7F6ED10 /* Pods_ScripturesMapped.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScripturesMapped.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F28E39B93A8124B2E09B01A /* Pods-ScripturesMapped.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScripturesMapped.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScripturesMapped/Pods-ScripturesMapped.debug.xcconfig"; sourceTree = "<group>"; };
 		5CB8A07D00C8A9B705778F75 /* Pods-ScripturesMapped.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScripturesMapped.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScripturesMapped/Pods-ScripturesMapped.release.xcconfig"; sourceTree = "<group>"; };
+		CF10288C1FA925D4001ADF1A /* geocode.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = geocode.js; sourceTree = "<group>"; };
 		CF1815CF1FA76D9300C05180 /* ScriptureRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptureRenderer.swift; sourceTree = "<group>"; };
 		CF1815D01FA76D9300C05180 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CF1815D31FA76DE500C05180 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -46,6 +53,11 @@
 		CF9140A51FA19030006B4FA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF9140A71FA19030006B4FA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFDC3DB01FA191C500E59EBC /* ScriptureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptureTableViewController.swift; sourceTree = "<group>"; };
+		CFE440961FA7D2B700370753 /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
+		CFE440981FA7D8D700370753 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		CFE4409A1FA7DA3E00370753 /* ChapterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterTableViewController.swift; sourceTree = "<group>"; };
+		CFE4409C1FA7DA4F00370753 /* ChapterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterTableViewCell.swift; sourceTree = "<group>"; };
+		CFE4409E1FA7F2C800370753 /* VersesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +111,7 @@
 		CF1815E11FA772B500C05180 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CF10288C1FA925D4001ADF1A /* geocode.js */,
 				CF1815D91FA76DEF00C05180 /* geo.21.sqlite */,
 				CF9140A21FA19030006B4FA8 /* Assets.xcassets */,
 				CF9140A71FA19030006B4FA8 /* Info.plist */,
@@ -153,6 +166,8 @@
 				CF91409F1FA19030006B4FA8 /* Main.storyboard */,
 				CF9140A41FA19030006B4FA8 /* LaunchScreen.storyboard */,
 				CF1815E21FA7759700C05180 /* ScriptureTableViewCell.swift */,
+				CFE440981FA7D8D700370753 /* BookTableViewCell.swift */,
+				CFE4409C1FA7DA4F00370753 /* ChapterTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,6 +177,9 @@
 			children = (
 				CFDC3DB01FA191C500E59EBC /* ScriptureTableViewController.swift */,
 				CF1815E41FA79B5600C05180 /* MapViewController.swift */,
+				CFE440961FA7D2B700370753 /* BookTableViewController.swift */,
+				CFE4409A1FA7DA3E00370753 /* ChapterTableViewController.swift */,
+				CFE4409E1FA7F2C800370753 /* VersesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -229,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF9140A61FA19030006B4FA8 /* LaunchScreen.storyboard in Resources */,
+				CF10288D1FA925D5001ADF1A /* geocode.js in Resources */,
 				CF1815DB1FA76DEF00C05180 /* geo.21.sqlite in Resources */,
 				CF9140A31FA19030006B4FA8 /* Assets.xcassets in Resources */,
 				CF9140A11FA19030006B4FA8 /* Main.storyboard in Resources */,
@@ -297,10 +316,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFE4409F1FA7F2C800370753 /* VersesViewController.swift in Sources */,
+				CFE4409B1FA7DA3E00370753 /* ChapterTableViewController.swift in Sources */,
 				CF1815D21FA76D9300C05180 /* String+Extensions.swift in Sources */,
 				CF1815D11FA76D9300C05180 /* ScriptureRenderer.swift in Sources */,
+				CFE440971FA7D2B700370753 /* BookTableViewController.swift in Sources */,
 				CFDC3DB11FA191C500E59EBC /* ScriptureTableViewController.swift in Sources */,
+				CFE440991FA7D8D700370753 /* BookTableViewCell.swift in Sources */,
 				CF1815E51FA79B5600C05180 /* MapViewController.swift in Sources */,
+				CFE4409D1FA7DA4F00370753 /* ChapterTableViewCell.swift in Sources */,
 				CF1815E31FA7759700C05180 /* ScriptureTableViewCell.swift in Sources */,
 				CF1815D61FA76DE500C05180 /* Book.swift in Sources */,
 				CF1815DC1FA76DEF00C05180 /* GeoDatabase.swift in Sources */,

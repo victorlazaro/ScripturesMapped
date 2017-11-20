@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pBV-eI-Gb6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pBV-eI-Gb6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,13 +12,16 @@
         <!--Map View Controller-->
         <scene sceneID="7le-Wx-QCl">
             <objects>
-                <viewController id="LT6-dl-ZBA" customClass="MapViewController" customModule="ScripturesMapped" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LT6-dl-ZBA" customClass="MapViewController" customModule="ScripturesMapped" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lmS-eX-36c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eTQ-xN-5Qf">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="LT6-dl-ZBA" id="I12-JR-txd"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,13 +33,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ugO-0f-6xI"/>
                     </view>
+                    <navigationItem key="navigationItem" id="WQi-gJ-hDo"/>
                     <connections>
                         <outlet property="mapView" destination="eTQ-xN-5Qf" id="eJv-HE-bhD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rja-ap-bK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="256.80000000000001" y="579.76011994002999"/>
+            <point key="canvasLocation" x="1062" y="1667"/>
         </scene>
         <!--Scriptures-->
         <scene sceneID="l71-Kk-f2X">
@@ -51,7 +55,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MFg-Ha-hiM" id="XW2-Tc-jEo">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6h-Zp-vhh">
@@ -101,7 +105,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="36q-hD-nNe" id="jzI-fF-K3K">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEY-c3-ava">
@@ -131,7 +135,7 @@
                     </tableView>
                     <connections>
                         <segue destination="TTr-bD-Yhg" kind="show" identifier="ToChapterSegue" id="O4F-pD-Y0b"/>
-                        <segue destination="CF4-SJ-dBi" kind="show" identifier="ToVersesSegue" id="Xrs-qc-3LC"/>
+                        <segue destination="CF4-SJ-dBi" kind="show" identifier="ToVersesSegue" id="mTG-1c-sQf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0l0-4n-5up" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -160,7 +164,7 @@
                 <splitViewController id="pBV-eI-Gb6" sceneMemberID="viewController">
                     <connections>
                         <segue destination="MeV-gu-l4v" kind="relationship" relationship="masterViewController" id="rvj-M9-tg9"/>
-                        <segue destination="LT6-dl-ZBA" kind="relationship" relationship="detailViewController" id="T5t-df-x6C"/>
+                        <segue destination="B1H-9f-aSI" kind="relationship" relationship="detailViewController" id="T5t-df-x6C"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bwu-Om-h5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,7 +184,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a0g-xG-Lpe" id="aUp-Op-Pyp">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdL-cP-QAr" userLabel="Chapter Label">
@@ -209,7 +213,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="CF4-SJ-dBi" kind="show" identifier="ToVersesSegue" id="hue-Aj-Gqm"/>
+                        <segue destination="CF4-SJ-dBi" kind="show" identifier="ToVersesSegue" id="dux-9T-7dY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5su-1H-KeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -224,32 +228,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B2D-82-rVX">
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gjb-eA-fJI">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="B2D-82-rVX" firstAttribute="top" secondItem="HnE-yP-9S6" secondAttribute="top" id="NKM-sO-8Xn"/>
-                            <constraint firstItem="HnE-yP-9S6" firstAttribute="bottom" secondItem="B2D-82-rVX" secondAttribute="bottom" id="OkM-nL-cu8"/>
-                            <constraint firstItem="B2D-82-rVX" firstAttribute="leading" secondItem="HnE-yP-9S6" secondAttribute="leading" id="cKs-04-riK"/>
-                            <constraint firstItem="HnE-yP-9S6" firstAttribute="trailing" secondItem="B2D-82-rVX" secondAttribute="trailing" id="eky-Dc-neW"/>
+                            <constraint firstItem="Gjb-eA-fJI" firstAttribute="top" secondItem="HnE-yP-9S6" secondAttribute="top" id="0c2-PT-3aB"/>
+                            <constraint firstItem="HnE-yP-9S6" firstAttribute="bottom" secondItem="Gjb-eA-fJI" secondAttribute="bottom" id="OQ6-4g-odD"/>
+                            <constraint firstItem="HnE-yP-9S6" firstAttribute="trailing" secondItem="Gjb-eA-fJI" secondAttribute="trailing" id="Xzr-Qb-rdl"/>
+                            <constraint firstItem="Gjb-eA-fJI" firstAttribute="leading" secondItem="HnE-yP-9S6" secondAttribute="leading" id="q0T-Tc-ejI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HnE-yP-9S6"/>
                     </view>
+                    <navigationItem key="navigationItem" id="jZg-Y4-C5F">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="lXk-RE-ZVH">
+                            <connections>
+                                <action selector="mapButton:" destination="CF4-SJ-dBi" id="kdY-va-48N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="textOutlet" destination="B2D-82-rVX" id="xpM-Kc-icu"/>
+                        <outlet property="webViewOutlet" destination="Gjb-eA-fJI" id="Nic-rg-ELz"/>
+                        <segue destination="B1H-9f-aSI" kind="showDetail" identifier="ToMapSegue" id="W5T-ls-JyB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rox-OT-Hwp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3652" y="-85"/>
+            <point key="canvasLocation" x="2449" y="769"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iQ6-7z-SVF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B1H-9f-aSI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="69b-2W-aiY">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LT6-dl-ZBA" kind="relationship" relationship="rootViewController" id="nzZ-w0-FJS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tOY-89-vF6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="182" y="1667"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hue-Aj-Gqm"/>
+        <segue reference="W5T-ls-JyB"/>
+        <segue reference="dux-9T-7dY"/>
     </inferredMetricsTieBreakers>
 </document>

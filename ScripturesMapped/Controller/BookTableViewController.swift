@@ -19,15 +19,12 @@ class BookTableViewController: UITableViewController {
     }
     
     //MARK: - Data
-    var volume: Book?
-    var books: [Book] = []
-    var selectedIndex: Int?
+    var books: [Book]!
     
+    // MARK: - View Controller lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.title = volume?.fullName
-        books = GeoDatabase.sharedGeoDatabase.booksForParentId((volume?.id)!)
     }
 
     // MARK: - Table view data source
@@ -49,11 +46,10 @@ class BookTableViewController: UITableViewController {
 
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndex = indexPath.row
-        if books[selectedIndex!].numChapters == nil {
+        if books[indexPath.row].numChapters == nil {
             performSegue(withIdentifier: Storyboard.toVersesSegue, sender: self)
         }
-        else if books[selectedIndex!].numChapters == 1{
+        else if books[indexPath.row].numChapters == 1{
             performSegue(withIdentifier: Storyboard.toVersesSegue, sender: self)
         }
         else {
@@ -64,19 +60,24 @@ class BookTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Storyboard.toChapterSegue) {
             if let chapterViewController = segue.destination as? ChapterTableViewController {
-                chapterViewController.book = books[selectedIndex!]
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let book = books[indexPath.row]
+                    chapterViewController.book = book
+                    chapterViewController.title = book.fullName
+                }
             }
         }
         else if segue.identifier == Storyboard.toVersesSegue {
             if let versesViewController = segue.destination as? VersesViewController {
-                let book = books[selectedIndex!]
-                versesViewController.book = book
-                versesViewController.bookId = book.id
-                versesViewController.chapterId = book.numChapters == nil ? 0 : 1
+                if let indexPath = tableView.indexPathForSelectedRow {
+                let book = books[indexPath.row]
+                    versesViewController.book = book
+                    versesViewController.bookId = book.id
+                    versesViewController.chapterId = book.numChapters == nil ? 0 : 1
+                }
             }
         }
 

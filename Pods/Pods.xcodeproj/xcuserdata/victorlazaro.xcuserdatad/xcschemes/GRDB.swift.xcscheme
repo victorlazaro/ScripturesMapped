@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F4F4F8D4DD20E42A5F14CA67D03B90A7"
+               BlueprintIdentifier = "B30F3CE71B96DD44FAAECFC67327B784"
                BuildableName = "GRDB.framework"
                BlueprintName = "GRDB.swift"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4F4F8D4DD20E42A5F14CA67D03B90A7"
+            BlueprintIdentifier = "B30F3CE71B96DD44FAAECFC67327B784"
             BuildableName = "GRDB.framework"
             BlueprintName = "GRDB.swift"
             ReferencedContainer = "container:Pods.xcodeproj">
